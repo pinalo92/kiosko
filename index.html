@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Optimizado -->
+    <title>Pica Pica - Packs Oferta | Compra por WhatsApp</title>
+    <meta name="description" content="Kiosco online Pica Pica - Compra tus packs de chuches por WhatsApp. Entrega fines de semana.">
+    <meta name="keywords" content="kiosco, packs, chuches, golosinas, delivery, WhatsApp, compra online">
+    <meta name="author" content="Pica Pica">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Pica Pica - Packs Oferta">
+    <meta property="og:description" content="Compra tus packs de chuches por WhatsApp">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pica-pica.netlify.app/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+    <link rel="apple-touch-icon" href="img/favicon.png">
+    
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="preconnect" href="https://wa.me">
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Store",
+        "name": "Pica Pica",
+        "description": "Kiosco online de packs de chuches",
+        "telephone": "+34 665 020 257",
+        "priceRange": "$€",
+        "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "ES"
+        },
+        "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Saturday", "Sunday"],
+        "opens": "10:00",
+        "closes": "22:00"
+        },
+        "paymentAccepted": "Cash",
+        "url": "kiosco-pica-pica.netlify.app/"
+    }
+    </script>
+</head>
+<body>
+    <!-- NOTIFICATION CONTAINER -->
+    <div id="notificationContainer" class="notification-container"></div>
+
+    <!-- PRELOADER -->
+    <div id="preloader" class="preloader">
+        <div class="loader-spinner"></div>
+        <p>Cargando Pica Pica...</p>
+    </div>
+
+    <!-- BOTÓN WHATSAPP FLOTANTE (ELIMINADO) -->
+
+    <!-- HEADER CON BANNER -->
+    <header class="header">
+        <div class="banner-container">
+            <img src="img/banner.jpg" alt="Pica Pica Banner" class="banner-image">
+        </div>
+    </header>
+
+    <!-- BOTÓN DEL CARRITO FLOTANTE -->
+    <button class="cart-btn" onclick="toggleCart()">
+        <svg class="cart-icon" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.24,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.58 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z" />
+        </svg>
+        <span class="cart-count" id="cartCount">0</span>
+    </button>
+
+    <!-- INFORMACIÓN IMPORTANTE -->
+    <div class="info-banner">
+        <p style="direction: rtl; font-weight: bold; color: black; margin: 0;"> Pedido mínimo 5€ • Reparto fines de semana • Entre semana 20:00‑21:00 🚚</p>
+    </div>
+
+    <!-- SECCIÓN DE PACKS -->
+    <section class="section">
+        <div class="section-header">
+            <nav class="top-nav" aria-label="Principal">
+                <ul>
+                    <li><a href="#" class="nav-link">Inicio</a></li>
+                    <li><a href="#packsProducts" class="nav-link">Productos</a></li>
+                    <li><a href="#" class="nav-link" onclick="toggleCart(); return false;">Carrito</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="section-content">
+            <div class="category-filter">
+                <ul class="category-list" id="categoryList">
+                    <li class="category-item" data-cat="gominolas"><span class="category-icon">▶</span> Gominolas</li>
+                    <li class="category-item" data-cat="gominolas-cidas"><span class="category-icon">▶</span> Gominolas Ácidas</li>
+                    <li class="category-item" data-cat="arazules"><span class="category-icon">▶</span> Arazules</li>
+                    <li class="category-item" data-cat="chocolates"><span class="category-icon">▶</span> Chocolates</li>
+                    <li class="category-item" data-cat="snaks"><span class="category-icon">▶</span> Snacks</li>
+                    <li class="category-item" data-cat="bebidas"><span class="category-icon">▶</span> Bebidas</li>
+                </ul>
+            </div>
+        
+            <div class="products-grid" id="packsProducts">
+                <!-- Se cargará dinámicamente -->
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL CARRITO -->
+    <div class="modal-overlay" id="modalOverlay" onclick="toggleCart()"></div>
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h2>🛒 Tu Carrito</h2>
+            <button class="close-btn" onclick="toggleCart()" aria-label="Cerrar carrito">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="currentColor" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="cart-body">
+            <div class="cart-items" id="cartItems">
+                <div class="empty-cart">
+                    <svg class="empty-cart-icon" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.24,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.58 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z" />
+                    </svg>
+                    <p>Tu carrito está vacío</p>
+                    <p class="empty-cart-text">¡Agrega packs para comenzar!</p>
+                </div>
+            </div>
+
+            <div class="cart-summary">
+                <div class="cart-row">
+                    <span>Subtotal</span>
+                    <span id="subtotalAmount">$0</span>
+                </div>
+                <div class="cart-row">
+                    <span>Envío</span>
+                    <span id="shippingAmount">Gratis</span>
+                </div>
+                <div class="cart-total">
+                    <span><strong>Total</strong></span>
+                    <span id="totalAmount"><strong>$0</strong></span>
+                </div>
+            </div>
+
+            <div class="cart-minimum">
+                <svg class="info-icon" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+                </svg>
+                <span>Pedido mínimo: <strong style="color: black; direction: rtl; display: inline-block;">$5</strong></span>
+            </div>
+
+            <button class="checkout-btn" id="checkoutBtn" onclick="window.checkout()">
+                <img src="img/whatsapp.svg" alt="WhatsApp" class="checkout-icon">
+                Comprar
+            </button>
+
+            <button class="clear-cart-btn" onclick="window.clearCart()">
+                Vaciar carrito
+            </button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Pica Pica</h3>
+                <p>Los mejores packs de chuches para tu fin de semana</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/kioscopicapica/" aria-label="Instagram" target="_blank">
+                        <img src="img/instagram.svg" alt="Instagram" class="social-icon">
+                    </a>
+                    <a href="https://wa.me/+34665020257" target="_blank" aria-label="WhatsApp">
+                        <img src="img/whatsapp.svg" alt="WhatsApp" class="social-icon">
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Horarios</h4>
+                <ul>
+                    <li> 📅 Entre semana: 20:00 - 21:00</li>
+                    <li> 📅 Fines de semana: 20:00 - 21:00</li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <ul>
+                    <li>📞 +34 665 020 257</li>
+                    <li>✉️ hola@picapica.com</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Pica Pica - Kiosco Online. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <a href="terminos-y-condiciones.html">Términos y condiciones</a>
+                <a href="politica-privacidad.html">Política de privacidad</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="js/config.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/whatsapp.js"></script>
+    <script src="js/ui.js"></script>
+</body>
+</html>

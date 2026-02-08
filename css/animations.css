@@ -1,0 +1,301 @@
+/* ============================================
+   ANIMACIONES CSS
+   ============================================ */
+
+/* Fade In para productos */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.product-card {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.product-card:nth-child(1) { animation-delay: 0.1s; }
+.product-card:nth-child(2) { animation-delay: 0.2s; }
+.product-card:nth-child(3) { animation-delay: 0.3s; }
+.product-card:nth-child(4) { animation-delay: 0.4s; }
+.product-card:nth-child(5) { animation-delay: 0.5s; }
+.product-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Pulse para botones importantes */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.checkout-btn {
+    animation: pulse 2s infinite;
+}
+
+/* Bounce para el carrito */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.cart-btn {
+    animation: bounce 2s infinite;
+}
+
+/* Slide In para modales */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.cart-modal.active {
+    animation: slideInRight var(--transition-normal);
+}
+
+/* Slide Out para modales */
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Scale para hover en tarjetas */
+.product-card:hover {
+    animation: none;
+}
+
+/* Loading spinner */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Skeleton loading */
+@keyframes skeleton-loading {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: calc(200px + 100%) 0;
+    }
+}
+
+.skeleton {
+    background: linear-gradient(
+        90deg,
+        var(--border) 0px,
+        var(--surface) 40px,
+        var(--border) 80px
+    );
+    background-size: 200px 100%;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+    border-radius: var(--radius-md);
+}
+
+/* Fade Out para preloader */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        visibility: visible;
+    }
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.preloader.hidden {
+    animation: fadeOut 0.5s forwards;
+}
+
+/* Shake para errores */
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+    }
+}
+
+.notification.error {
+    animation: shake 0.5s;
+}
+
+/* Breathing effect para badges */
+@keyframes breathe {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+.product-badge {
+    animation: breathe 3s ease-in-out infinite;
+}
+
+/* Typing effect para banner promocional */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+.promo-banner h2 {
+    overflow: hidden;
+    border-right: 3px solid white;
+    white-space: nowrap;
+    animation: typing 3s steps(20, end), blink 0.75s step-end infinite;
+}
+
+/* Gradient shift para header */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.header {
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease infinite;
+}
+
+/* Floating effect para WhatsApp button */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.whatsapp-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Heartbeat para botones de acción */
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+    }
+    14% {
+        transform: scale(1.1);
+    }
+    28% {
+        transform: scale(1);
+    }
+    42% {
+        transform: scale(1.1);
+    }
+    70% {
+        transform: scale(1);
+    }
+}
+
+.btn-primary {
+    animation: heartbeat 2s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+/* Slide up para footer */
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.footer {
+    animation: slideUp 1s ease-out 0.5s forwards;
+    opacity: 0;
+}
+
+/* Ripple effect para botones */
+@keyframes ripple {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.3);
+    }
+    100% {
+        box-shadow: 0 0 0 15px rgba(255, 107, 107, 0);
+    }
+}
+
+.btn:active {
+    animation: ripple 0.6s linear;
+}
+
+/* Wobble para hover en productos */
+@keyframes wobble {
+    0%, 100% {
+        transform: translateX(0%);
+    }
+    15% {
+        transform: translateX(-2%) rotate(-1deg);
+    }
+    30% {
+        transform: translateX(1.5%) rotate(1deg);
+    }
+    45% {
+        transform: translateX(-1%) rotate(-0.5deg);
+    }
+    60% {
+        transform: translateX(0.5%) rotate(0.5deg);
+    }
+}
+
+.product-card:hover {
+    animation: wobble 0.5s ease-in-out;
+}
